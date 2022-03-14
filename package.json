@@ -1,10 +1,10 @@
 {
-  "name": "hyper-gateway",
-  "version": "2.2.0",
-  "description": "A gateway for talking to hypercore-protocol using the same URL structures as Agregore",
+  "name": "@web4/bit-gateway",
+  "version": "1.0.0",
+  "description": "A gateway for talking to BIT protocol using the same URL structures as Byte Browser",
   "main": "src/index.js",
   "bin": {
-    "hyper-gateway": "src/bin.js"
+    "bit-gateway": "src/bin.js"
   },
   "scripts": {
     "build": "npm run build-linux && npm run build-windows && npm run build-mac",
@@ -46,24 +46,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RangerMauve/hyper-gateway.git"
+    "url": "git+https://github.com/bitwebs/bit-gateway.git"
   },
   "keywords": [
-    "hypercore",
+    "unichain",
     "protocol",
     "gateway",
     "daemon"
   ],
-  "author": "rangermauve <ranger@mauve.moe> (https://mauve.moe/)",
+  "author": "BitWeb Project",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/RangerMauve/hyper-gateway/issues"
+    "url": "https://github.com/bitwebs/bit-gateway/issues"
   },
-  "homepage": "https://github.com/RangerMauve/hyper-gateway#readme",
+  "homepage": "https://github.com/bitwebs/bit-gateway#readme",
   "dependencies": {
+    "@web4/sdk": "^1.0.0",
+    "@web4/unichain-fetch": "^1.0.0",
     "env-paths": "^2.2.1",
-    "hyper-sdk": "^3.0.7",
-    "hypercore-fetch": "^8.4.0",
     "yargs": "^17.0.1"
   },
   "devDependencies": {

@@ -1,19 +1,19 @@
 const test = require('tape')
 const fetch = require('node-fetch')
 const getPort = require('get-port')
-const HyperGateway = require('./')
+const BitGateway = require('./')
 
 test('Load data', async (t) => {
   const port = await getPort()
 
-  const gateway = await HyperGateway.create({
+  const gateway = await BitGateway.create({
     port,
     persist: false,
     silent: true
   })
 
   try {
-    const url = `http://localhost:${port}/hyper/blog.mauve.moe/`
+    const url = `http://localhost:${port}/bit/social.x/`
 
     const response = await fetch(url)
 
@@ -28,7 +28,7 @@ test('Load data', async (t) => {
 test('Upload data', async (t) => {
   const port = await getPort()
 
-  const gateway = await HyperGateway.create({
+  const gateway = await BitGateway.create({
     port,
     persist: false,
     silent: true,
@@ -36,7 +36,7 @@ test('Upload data', async (t) => {
   })
 
   try {
-    const url = `http://localhost:${port}/hyper/example/example.txt`
+    const url = `http://localhost:${port}/bit/example/example.txt`
 
     const response = await fetch(url, {
       method: 'PUT',

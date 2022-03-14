@@ -1,6 +1,6 @@
 const http = require('http')
-const SDK = require('hyper-sdk')
-const makeFetch = require('hypercore-fetch')
+const SDK = require('@web4/sdk')
+const makeFetch = require('@web4/unichain-fetch')
 const { Readable } = require('stream')
 
 module.exports = {
@@ -14,14 +14,14 @@ async function create ({
   serverOpts = {
     logger: true
   },
-  hyperOpts = {},
+  bitOpts = {},
   writable = false,
   persist = true,
   silent = false,
   p2pPort,
   storageLocation
 } = {}) {
-  const debug = silent ? require('debug')('hyper-gateway') : log
+  const debug = silent ? require('debug')('bit-gateway') : log
 
   debug('Initializing server %O', {
     port,
@@ -32,19 +32,19 @@ async function create ({
   })
 
   const sdk = await SDK({
-    applicationName: 'hyper-gateway',
+    applicationName: 'bit-gateway',
     storage: storageLocation,
     persist,
     swarmOpts: {
       ephemeral: false,
       preferredPort: p2pPort
     },
-    ...hyperOpts
+    ...bitOpts
   })
 
-  const { Hyperdrive } = sdk
+  const { Bitdrive } = sdk
 
-  const fetch = makeFetch({ Hyperdrive, writable })
+  const fetch = makeFetch({ Bitdrive, writable })
 
   const server = http.createServer(async (req, res) => {
     try {
@@ -52,13 +52,13 @@ async function create ({
       debug('Request: %O', { method, url, headers })
 
       // TODO: Show something at the root?
-      if (!url.startsWith('/hyper/')) {
+      if (!url.startsWith('/bit/')) {
         res.writeHead(404)
         res.end('Not Found')
         return
       }
 
-      const finalURL = 'hyper://' + url.slice('/hyper/'.length)
+      const finalURL = 'bit://' + url.slice('/bit/'.length)
 
       const response = await fetch(finalURL, {
         method,

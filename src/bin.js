@@ -23,8 +23,8 @@ function runOptions (yargs) {
       default: true
     })
     .option('storage-location', {
-      describe: 'The location to store hypercore data',
-      default: envPaths('hyper-gateway').data
+      describe: 'The location to store unichain data',
+      default: envPaths('bit-gateway').data
     })
     .option('silent', {
       describe: 'Prevent additional logs',
@@ -50,7 +50,7 @@ async function runServer (args) {
 }
 
 yargs
-  .scriptName('hyper-gateway')
+  .scriptName('bit-gateway')
   .showHelpOnFail(true)
   .demandCommand()
   .command('run', 'Run the gateway', runOptions, runServer)
